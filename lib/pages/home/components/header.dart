@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import '../../theme_inherited.dart';
 import '../home_page.dart';
 
 class Header extends StatefulWidget {
@@ -11,12 +11,6 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print('atualizou');
-  }
-
   @override
   Widget build(BuildContext context) {
     context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
@@ -58,7 +52,6 @@ class _HeaderState extends State<Header> {
                         style: TextStyle(
                             fontFamily: 'Poppins-Medium',
                             fontSize: 12,
-                            fontStyle: FontStyle.normal,
                             height: 1.0),
                       ),
                     ],
@@ -75,10 +68,8 @@ class _HeaderState extends State<Header> {
                   onTap: () {
                     if (isDark) {
                       state.changeTheme(ThemeMode.light);
-                      print('muda para light');
                     } else {
                       state.changeTheme(ThemeMode.dark);
-                      print('muda para dark');
                     }
                   },
                 ),
