@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterando_mockup/pages/home_page.dart';
-
-import '../src/config/custom_colors.dart';
+import 'package:flutterando_mockup/pages/home/home_page.dart';
+import 'package:flutterando_mockup/src/themes/color_schemes.g.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,7 +12,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
@@ -28,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: CustomColors.background,
+      color: darkColorScheme.background,
       child: Center(
         child: Padding(
           padding: const EdgeInsets.only(
