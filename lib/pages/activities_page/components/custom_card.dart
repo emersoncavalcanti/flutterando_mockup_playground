@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../src/themes/color_schemes.g.dart';
-import '../home_page.dart';
+import '../../base_page.dart';
 
 class CustomCard extends StatefulWidget {
   final IconData icon;
@@ -27,7 +27,7 @@ class CustomCard extends StatefulWidget {
 class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
-    final state = context.findAncestorStateOfType<HomePageState>()!;
+    final state = context.findAncestorStateOfType<BaseScreenState>()!;
     final themeMode = state.themeMode;
 
     return Card(
@@ -75,7 +75,7 @@ class _CustomCardState extends State<CustomCard> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          'Exercicios: ',
+                          'Exercicios:',
                           style: TextStyle(
                             color: lightColorScheme.onSurfaceVariant,
                             fontFamily: themeMode == ThemeMode.dark
@@ -84,11 +84,14 @@ class _CustomCardState extends State<CustomCard> {
                             fontSize: 12,
                           ),
                         ),
-                        Text(
-                          widget.numberExercise,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins-Medium',
-                            fontSize: 12,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 11),
+                          child: Text(
+                            widget.numberExercise,
+                            style: const TextStyle(
+                              fontFamily: 'Poppins-Medium',
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                       ],
@@ -105,13 +108,13 @@ class _CustomCardState extends State<CustomCard> {
                     color: lightColorScheme.onSurfaceVariant,
                     fontFamily: themeMode == ThemeMode.dark
                         ? 'Montserrat-Regular'
-                        : 'Poppins-Regular',
+                        : 'Poppins-Medium',
                     fontSize: 14),
               ),
             ),
             Container(
                 margin: const EdgeInsets.only(
-                    top: 41.5, bottom: 30.5, left: 18.56, right: 10.56),
+                    top: 41.5, bottom: 22.5, left: 18.56, right: 10.56),
                 child: Row(
                   children: [
                     Expanded(

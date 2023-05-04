@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../theme_inherited.dart';
-import '../home_page.dart';
+import '../../pages/base_page.dart';
+import '../../pages/theme_inherited.dart';
 
 class Header extends StatefulWidget {
-  const Header({super.key});
+  final String title;
+  final String subtitle;
+  final String? image;
+
+  const Header({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    this.image = 'assets/images/logo.png',
+  });
 
   @override
   State<Header> createState() => _HeaderState();
@@ -15,7 +24,7 @@ class _HeaderState extends State<Header> {
   Widget build(BuildContext context) {
     context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
 
-    final state = context.findAncestorStateOfType<HomePageState>()!;
+    final state = context.findAncestorStateOfType<BaseScreenState>()!;
     final isDark = state.themeMode == ThemeMode.dark;
 
     return Padding(
@@ -29,7 +38,7 @@ class _HeaderState extends State<Header> {
               flex: 0,
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Image.asset('assets/images/logo.png'),
+                child: Image.asset(widget.image!),
               ),
             ),
             Expanded(
@@ -39,17 +48,17 @@ class _HeaderState extends State<Header> {
                 child: SizedBox(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        'Atividades',
-                        style: TextStyle(
+                        widget.title,
+                        style: const TextStyle(
                           fontFamily: 'Poppins-SemiBold',
                           fontSize: 20,
                         ),
                       ),
                       Text(
-                        'Flutterando Masterclass',
-                        style: TextStyle(
+                        widget.subtitle,
+                        style: const TextStyle(
                             fontFamily: 'Poppins-Medium',
                             fontSize: 12,
                             height: 1.0),
