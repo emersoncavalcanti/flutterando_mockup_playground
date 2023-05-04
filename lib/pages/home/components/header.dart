@@ -19,7 +19,7 @@ class _HeaderState extends State<Header> {
     final isDark = state.themeMode == ThemeMode.dark;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 42, 14, 0),
+      padding: const EdgeInsets.fromLTRB(15, 0, 14, 0),
       child: SizedBox(
         height: 48,
         child: Row(
