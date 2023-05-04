@@ -9,7 +9,17 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 3),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.fastOutSlowIn,
+  );
+
   @override
   void initState() {
     super.initState();
@@ -24,6 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
       color: darkColorScheme.background,
@@ -33,10 +49,13 @@ class _SplashScreenState extends State<SplashScreen> {
             left: 71,
             right: 70,
           ),
-          child: SizedBox(
-            width: 287,
-            height: 75,
-            child: Image.asset('assets/images/masterclass_logo.png'),
+          child: ScaleTransition(
+            scale: _animation,
+            child: SizedBox(
+              width: 287,
+              height: 75,
+              child: Image.asset('assets/images/masterclass_logo.png'),
+            ),
           ),
         ),
       ),
