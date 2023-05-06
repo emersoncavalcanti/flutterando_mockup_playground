@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../animations_page.dart';
+import '../animations_page/animations_page.dart';
 import '../theme_inherited.dart';
 import 'components/custom_card.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import '../../src/shared/header.dart';
 
 class ActivitiesPage extends StatefulWidget {
   const ActivitiesPage({super.key});
@@ -19,12 +18,6 @@ class ActivitiesPageState extends State<ActivitiesPage> {
     context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
     return ListView(
       children: [
-        const SafeArea(
-          child: Header(
-            title: 'Atividades',
-            subtitle: 'Flutterando Masterclass',
-          ),
-        ),
         CustomCard(
             icon: FontAwesomeIcons.personRunning,
             title: 'Animações',

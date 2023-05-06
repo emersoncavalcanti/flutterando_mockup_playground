@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../src/shared/header.dart';
+import '../../src/shared/header.dart';
 
 class AnimationsPage extends StatelessWidget {
   const AnimationsPage({super.key});

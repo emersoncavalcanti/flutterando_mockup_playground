@@ -1,12 +1,14 @@
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterando_mockup/pages/about_dev_page.dart';
-import 'package:flutterando_mockup/pages/activities_page/activities_page.dart';
+
 import 'package:flutterando_mockup/pages/repositories_page.dart';
 import 'package:flutterando_mockup/pages/theme_inherited.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../src/shared/header.dart';
 import '../src/themes/color_schemes.g.dart';
+import 'activities_page/activities_page.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -17,6 +19,7 @@ class BaseScreen extends StatefulWidget {
 
 class BaseScreenState extends State<BaseScreen> {
   int currentPage = 0;
+  late String title = 'Atividades';
   late PageController pc;
   var _themeMode = ThemeMode.light;
   ThemeMode get themeMode => _themeMode;
@@ -36,6 +39,14 @@ class BaseScreenState extends State<BaseScreen> {
   setCurrentPage(page) {
     setState(() {
       currentPage = page;
+
+      if (page == 0) {
+        title = 'Atividades';
+      } else if (page == 1) {
+        title = 'Repositórios';
+      } else {
+        title = 'Sobre o Dev';
+      }
     });
   }
 
@@ -61,14 +72,23 @@ class BaseScreenState extends State<BaseScreen> {
         child: Scaffold(
           body: Stack(
             children: [
-              PageView(
-                controller: pc,
-                onPageChanged: setCurrentPage,
-                children: const [
-                  ActivitiesPage(),
-                  RepositoriesPage(),
-                  AboutDevPage(),
-                ],
+              SafeArea(
+                child: Header(
+                  title: title,
+                  subtitle: 'Flutterando Masterclass',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 55, bottom: 100),
+                child: PageView(
+                  controller: pc,
+                  onPageChanged: setCurrentPage,
+                  children: const [
+                    ActivitiesPage(),
+                    RepositoriesPage(),
+                    AboutDevPage(),
+                  ],
+                ),
               ),
               Positioned(
                 bottom: 0,
