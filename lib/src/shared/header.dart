@@ -6,13 +6,13 @@ import '../../pages/theme_inherited.dart';
 class Header extends StatefulWidget {
   final String title;
   final String subtitle;
-  final String? image;
+  final bool backPage;
 
   const Header({
     super.key,
     required this.title,
     required this.subtitle,
-    this.image = 'assets/images/logo.png',
+    this.backPage = false,
   });
 
   @override
@@ -38,7 +38,14 @@ class _HeaderState extends State<Header> {
               flex: 0,
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Image.asset(widget.image!),
+                child: widget.backPage
+                    ? InkWell(
+                        child: const Icon(Icons.arrow_back_ios),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      )
+                    : Image.asset('assets/images/logo.png'),
               ),
             ),
             Expanded(

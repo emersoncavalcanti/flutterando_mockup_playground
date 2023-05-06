@@ -10,6 +10,7 @@ class AnimationsPage extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: Header(
+          backPage: true,
           title: 'Animações',
           subtitle: 'Flutterando Masterclass',
         ),

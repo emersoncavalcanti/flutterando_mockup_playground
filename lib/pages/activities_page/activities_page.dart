@@ -20,11 +20,11 @@ class ActivitiesPageState extends State<ActivitiesPage> {
     return ListView(
       children: [
         const SafeArea(
-            child: Header(
-          image: 'assets/images/arrow-back.png',
-          title: 'Atividades',
-          subtitle: 'Flutterando Masterclass',
-        )),
+          child: Header(
+            title: 'Atividades',
+            subtitle: 'Flutterando Masterclass',
+          ),
+        ),
         CustomCard(
             icon: FontAwesomeIcons.personRunning,
             title: 'Animações',
