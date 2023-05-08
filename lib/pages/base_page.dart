@@ -1,6 +1,6 @@
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterando_mockup/pages/about_dev_page.dart';
+import 'package:flutterando_mockup/pages/about_dev_page/about_dev_page.dart';
 
 import 'package:flutterando_mockup/pages/repositories_page.dart';
 import 'package:flutterando_mockup/pages/theme_inherited.dart';

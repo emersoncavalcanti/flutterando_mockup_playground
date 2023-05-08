@@ -64,7 +64,9 @@ class _CustomCardState extends State<CustomCard> {
                   child: Text(
                     widget.title,
                     style: const TextStyle(
-                        fontFamily: 'Poppins-Medium', fontSize: 16),
+                      fontFamily: 'Poppins-Medium',
+                      fontSize: 16,
+                    ),
                   ),
                 ),
                 Expanded(

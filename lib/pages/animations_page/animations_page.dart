@@ -1,19 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutterando_mockup/pages/animations_page/widgets/custom_list.dart';
 
 import '../../src/shared/header.dart';
+import '../base_page.dart';
 
-class AnimationsPage extends StatelessWidget {
+class AnimationsPage extends StatefulWidget {
   const AnimationsPage({super.key});
 
   @override
+  State<AnimationsPage> createState() => _AnimationsPageState();
+}
+
+class _AnimationsPageState extends State<AnimationsPage> {
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Header(
-          backPage: true,
-          title: 'Animações',
-          subtitle: 'Flutterando Masterclass',
-        ),
+    final size = MediaQuery.of(context).size;
+    context.findAncestorStateOfType<BaseScreenState>()!;
+
+    return Scaffold(
+      body: Column(
+        children: [
+          const SafeArea(
+            child: Header(
+              backPage: true,
+              title: 'Animações',
+              subtitle: 'Flutterando Masterclass',
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 26, right: 11, left: 12),
+            height: size.height - 74,
+            width: size.width,
+            child: ListView(
+              children: const [
+                CustomList(indice: 1, title: 'Exercício 02'),
+                CustomList(indice: 2, title: 'Exercício 03'),
+                CustomList(indice: 3, title: 'Exercício 01'),
+                CustomList(indice: 4, title: 'Exercício 04'),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
