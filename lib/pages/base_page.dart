@@ -19,6 +19,7 @@ class BasePage extends StatefulWidget {
 
 class BasePageState extends State<BasePage> {
   int currentPage = 0;
+  double currentPosition = 0;
   late String title = 'Atividades';
   late PageController pc;
   var _themeMode = ThemeMode.light;
@@ -42,10 +43,13 @@ class BasePageState extends State<BasePage> {
 
       if (page == 0) {
         title = 'Atividades';
+        currentPosition = 0;
       } else if (page == 1) {
         title = 'Repositórios';
+        currentPosition = 141;
       } else {
         title = 'Sobre o Dev';
+        currentPosition = 287;
       }
     });
   }
@@ -109,6 +113,22 @@ class BasePageState extends State<BasePage> {
                       : lightColorScheme.background,
                   child: Stack(
                     children: [
+                      AnimatedPositioned(
+                        duration: const Duration(milliseconds: 500),
+                        left: currentPosition,
+                        curve: Curves.easeIn,
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 32, top: 9),
+                          width: 60,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: themeMode == ThemeMode.dark
+                                ? darkColorScheme.inverseSurface
+                                : lightColorScheme.inverseSurface,
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         width: size.width,
                         height: 80,
@@ -169,7 +189,7 @@ class BasePageState extends State<BasePage> {
                             ),
                           ],
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
