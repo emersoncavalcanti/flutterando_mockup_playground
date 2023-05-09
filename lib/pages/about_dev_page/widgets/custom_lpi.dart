@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 
 import '../../../src/themes/color_schemes.g.dart';
+import '../../base_page.dart';
+import '../../theme_inherited.dart';
 
-class CustomLpi extends StatelessWidget {
+class CustomLpi extends StatefulWidget {
   final String title;
   final double valueBar;
 
   const CustomLpi({super.key, required this.title, required this.valueBar});
 
   @override
+  State<CustomLpi> createState() => _CustomLpiState();
+}
+
+class _CustomLpiState extends State<CustomLpi> {
+  @override
   Widget build(BuildContext context) {
+    context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
+    final state = context.findAncestorStateOfType<BasePageState>()!;
+    final themeMode = state.themeMode;
+
     return Row(
       children: [
         Flexible(
@@ -17,7 +28,7 @@ class CustomLpi extends StatelessWidget {
             child: SizedBox(
               width: 70,
               child: Text(
-                title,
+                widget.title,
                 style: TextStyle(
                   fontFamily: 'Poppins-Medium',
                   color: lightColorScheme.onSurfaceVariant,
@@ -33,9 +44,11 @@ class CustomLpi extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: LinearProgressIndicator(
                   color: lightColorScheme.primary,
-                  backgroundColor: darkColorScheme.background,
+                  backgroundColor: themeMode == ThemeMode.light
+                      ? lightColorScheme.background
+                      : darkColorScheme.background,
                   minHeight: 9,
-                  value: valueBar,
+                  value: widget.valueBar,
                 ),
               ),
             )),

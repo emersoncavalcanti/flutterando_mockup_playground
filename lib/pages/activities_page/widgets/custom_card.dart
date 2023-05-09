@@ -27,7 +27,7 @@ class CustomCard extends StatefulWidget {
 class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
-    final state = context.findAncestorStateOfType<BaseScreenState>()!;
+    final state = context.findAncestorStateOfType<BasePageState>()!;
     final themeMode = state.themeMode;
 
     return Card(

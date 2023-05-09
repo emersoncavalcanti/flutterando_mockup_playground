@@ -3,6 +3,7 @@ import 'package:flutterando_mockup/pages/animations_page/widgets/custom_list.dar
 
 import '../../src/shared/header.dart';
 import '../base_page.dart';
+import '../theme_inherited.dart';
 
 class AnimationsPage extends StatefulWidget {
   const AnimationsPage({super.key});
@@ -15,7 +16,9 @@ class _AnimationsPageState extends State<AnimationsPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    context.findAncestorStateOfType<BaseScreenState>()!;
+
+    context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
+    context.findAncestorStateOfType<BasePageState>()!;
 
     return Scaffold(
       body: Column(
@@ -28,9 +31,9 @@ class _AnimationsPageState extends State<AnimationsPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 26, right: 11, left: 12),
-            height: size.height - 74,
+            margin: const EdgeInsets.only(right: 11, left: 12),
             width: size.width,
+            height: 500,
             child: ListView(
               children: const [
                 CustomList(indice: 1, title: 'Exercício 02'),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutterando_mockup/pages/about_dev_page/widgets/custom_LPI.dart';
+import 'package:flutterando_mockup/pages/about_dev_page/widgets/custom_lpi.dart';
 import 'package:flutterando_mockup/pages/about_dev_page/widgets/custom_card.dart';
 import 'package:flutterando_mockup/src/themes/color_schemes.g.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../base_page.dart';
+import '../theme_inherited.dart';
 
 class AboutDevPage extends StatefulWidget {
   const AboutDevPage({super.key});
@@ -16,12 +17,13 @@ class _AboutDevPageState extends State<AboutDevPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    context.findAncestorStateOfType<BaseScreenState>()!;
+    context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
+    context.findAncestorStateOfType<BasePageState>();
 
     return SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.only(
-          top: 13,
+          top: 60,
           right: 13,
           left: 14,
         ),

@@ -1,23 +1,23 @@
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterando_mockup/pages/about_dev_page/about_dev_page.dart';
-
 import 'package:flutterando_mockup/pages/repositories_page.dart';
+
 import 'package:flutterando_mockup/pages/theme_inherited.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../src/shared/header.dart';
 import '../src/themes/color_schemes.g.dart';
+import 'about_dev_page/about_dev_page.dart';
 import 'activities_page/activities_page.dart';
 
-class BaseScreen extends StatefulWidget {
-  const BaseScreen({super.key});
+class BasePage extends StatefulWidget {
+  const BasePage({super.key});
 
   @override
-  State<BaseScreen> createState() => BaseScreenState();
+  State<BasePage> createState() => BasePageState();
 }
 
-class BaseScreenState extends State<BaseScreen> {
+class BasePageState extends State<BasePage> {
   int currentPage = 0;
   late String title = 'Atividades';
   late PageController pc;
@@ -72,14 +72,8 @@ class BaseScreenState extends State<BaseScreen> {
         child: Scaffold(
           body: Stack(
             children: [
-              SafeArea(
-                child: Header(
-                  title: title,
-                  subtitle: 'Flutterando Masterclass',
-                ),
-              ),
               Padding(
-                padding: const EdgeInsets.only(top: 55, bottom: 100),
+                padding: const EdgeInsets.only(top: 60),
                 child: PageView(
                   controller: pc,
                   onPageChanged: setCurrentPage,
@@ -88,6 +82,19 @@ class BaseScreenState extends State<BaseScreen> {
                     RepositoriesPage(),
                     AboutDevPage(),
                   ],
+                ),
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                child: Container(
+                  color: themeMode == ThemeMode.dark
+                      ? darkColorScheme.background
+                      : lightColorScheme.background,
+                  width: size.width,
+                  height: 124,
+                  child: const Header(
+                      title: 'Atividades', subtitle: 'Flutterando Masterclass'),
                 ),
               ),
               Positioned(

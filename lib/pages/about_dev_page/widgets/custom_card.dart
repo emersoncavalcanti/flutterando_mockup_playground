@@ -3,8 +3,9 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../src/themes/color_schemes.g.dart';
 import '../../base_page.dart';
+import '../../theme_inherited.dart';
 
-class CustomCard extends StatelessWidget {
+class CustomCard extends StatefulWidget {
   final String title;
   final String image;
   const CustomCard(
@@ -13,12 +14,18 @@ class CustomCard extends StatelessWidget {
       this.image = 'assets/images/flutter.svg'});
 
   @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+  @override
   Widget build(BuildContext context) {
-    final state = context.findAncestorStateOfType<BaseScreenState>()!;
+    context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
+    final state = context.findAncestorStateOfType<BasePageState>()!;
     final themeMode = state.themeMode;
 
     final Widget svgIcon = SvgPicture.asset(
-      image,
+      widget.image,
       colorFilter: ColorFilter.mode(
           themeMode == ThemeMode.dark
               ? lightColorScheme.background
@@ -39,7 +46,7 @@ class CustomCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 8.6),
             child: Text(
-              title,
+              widget.title,
               style: const TextStyle(
                 fontFamily: 'Poppins-Medium',
                 fontSize: 12,
