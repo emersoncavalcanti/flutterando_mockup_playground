@@ -36,9 +36,9 @@ class _AnimationsPageState extends State<AnimationsPage> {
             height: 500,
             child: ListView(
               children: const [
-                CustomList(indice: 1, title: 'Exercício 02'),
-                CustomList(indice: 2, title: 'Exercício 03'),
-                CustomList(indice: 3, title: 'Exercício 01'),
+                CustomList(indice: 1, title: 'Exercício 01'),
+                CustomList(indice: 2, title: 'Exercício 02'),
+                CustomList(indice: 3, title: 'Exercício 03'),
                 CustomList(indice: 4, title: 'Exercício 04'),
               ],
             ),
