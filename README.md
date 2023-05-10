@@ -1,6 +1,6 @@
 # flutterando_mockup
 
-A new Flutter project.
+application created without using packages for study purposes
 
 ## Getting Started
 
