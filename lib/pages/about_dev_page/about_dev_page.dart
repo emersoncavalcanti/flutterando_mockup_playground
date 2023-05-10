@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterando_mockup/pages/about_dev_page/widgets/custom_lpi.dart';
 import 'package:flutterando_mockup/pages/about_dev_page/widgets/custom_card.dart';
 import 'package:flutterando_mockup/src/themes/color_schemes.g.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../base_page.dart';
 import '../theme_inherited.dart';
 
@@ -18,7 +18,7 @@ class _AboutDevPageState extends State<AboutDevPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
-    context.findAncestorStateOfType<BasePageState>();
+    final state = context.findAncestorStateOfType<BasePageState>()!;
 
     return SingleChildScrollView(
       child: Container(
@@ -65,7 +65,8 @@ class _AboutDevPageState extends State<AboutDevPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 13),
+                    padding:
+                        const EdgeInsets.only(top: 13, left: 20, right: 20),
                     child: Text(
                       textAlign: TextAlign.center,
                       'Duis rhoncus dui venenatis consequat porttitor. Etiam aliquet congue consequat. In posuere, nunc sit amet laoreet blandit, urna sapien.',
@@ -82,11 +83,21 @@ class _AboutDevPageState extends State<AboutDevPage> {
                     height: 30,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          Icon(FontAwesomeIcons.whatsapp),
-                          Icon(FontAwesomeIcons.githubAlt),
-                          Icon(FontAwesomeIcons.instagram),
-                          Icon(FontAwesomeIcons.facebookF),
+                        children: [
+                          state.themeMode == ThemeMode.dark
+                              ? Image.asset('assets/images/whatsapp-light.png')
+                              : Image.asset('assets/images/whatsapp-dark.png'),
+                          state.themeMode == ThemeMode.dark
+                              ? Image.asset(
+                                  'assets/images/github-alt-light.png')
+                              : Image.asset(
+                                  'assets/images/github-alt-dark.png'),
+                          state.themeMode == ThemeMode.dark
+                              ? Image.asset('assets/images/instagram-light.png')
+                              : Image.asset('assets/images/instagram-dark.png'),
+                          state.themeMode == ThemeMode.dark
+                              ? Image.asset('assets/images/facebook-light.png')
+                              : Image.asset('assets/images/facebook-dark.png'),
                         ]),
                   )
                 ],

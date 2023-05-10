@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../pages/base_page.dart';
 import '../../pages/theme_inherited.dart';
 
@@ -23,7 +22,13 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
-    final state = context.findAncestorStateOfType<BasePageState>()!;
+    var state = context.findAncestorStateOfType<BasePageState>()!;
+
+    changeTheme(ThemeMode themeMode) {
+      setState(() {
+        state.changeTheme(themeMode);
+      });
+    }
 
     return SafeArea(
       child: Padding(
@@ -39,7 +44,11 @@ class _HeaderState extends State<Header> {
                   alignment: Alignment.centerLeft,
                   child: widget.backPage
                       ? InkWell(
-                          child: const Icon(Icons.arrow_back_ios),
+                          child: state.themeMode == ThemeMode.dark
+                              ? Image.asset(
+                                  'assets/images/arrow-back-light.png')
+                              : Image.asset(
+                                  'assets/images/arrow-back-dark.png'),
                           onTap: () {
                             Navigator.pop(context);
                           },
@@ -79,12 +88,14 @@ class _HeaderState extends State<Header> {
                 child: Container(
                   alignment: Alignment.centerRight,
                   child: InkWell(
-                    child: const Icon(FontAwesomeIcons.solidMoon),
+                    child: state.themeMode == ThemeMode.dark
+                        ? Image.asset('assets/images/moon-light.png')
+                        : Image.asset('assets/images/moon-dark.png'),
                     onTap: () {
                       if (state.themeMode == ThemeMode.dark) {
-                        state.changeTheme(ThemeMode.light);
+                        changeTheme(ThemeMode.light);
                       } else {
-                        state.changeTheme(ThemeMode.dark);
+                        changeTheme(ThemeMode.dark);
                       }
                     },
                   ),

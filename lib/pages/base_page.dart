@@ -1,9 +1,7 @@
-import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterando_mockup/pages/repositories_page.dart';
 
 import 'package:flutterando_mockup/pages/theme_inherited.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../src/shared/header.dart';
 import '../src/themes/color_schemes.g.dart';
@@ -55,11 +53,13 @@ class BasePageState extends State<BasePage> {
   }
 
   changePage(page) {
-    pc.animateToPage(
-      page,
-      duration: const Duration(microseconds: 400),
-      curve: Curves.bounceIn,
-    );
+    setState(() {
+      pc.animateToPage(
+        page,
+        duration: const Duration(microseconds: 400),
+        curve: Curves.bounceIn,
+      );
+    });
   }
 
   @override
@@ -129,43 +129,30 @@ class BasePageState extends State<BasePage> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      Container(
                         width: size.width,
                         height: 80,
+                        padding: const EdgeInsets.only(top: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Column(
                               children: [
-                                IconButton(
-                                  onPressed: () => changePage(0),
-                                  icon: const Icon(
-                                    FeatherIcons.target,
-                                  ),
-                                ),
-                                const Text(
-                                  'Atividades',
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat-Regular',
-                                    fontSize: 12,
-                                    height: 0.1,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const VerticalDivider(),
-                            Column(
-                              children: [
-                                IconButton(
-                                  onPressed: () => changePage(1),
-                                  icon: const Icon(FontAwesomeIcons.github),
-                                ),
-                                const Text(
-                                  'Repositórios',
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat-Regular',
-                                    fontSize: 12,
-                                    height: 0.1,
+                                InkWell(
+                                    child: themeMode == ThemeMode.light
+                                        ? Image.asset(
+                                            'assets/images/target-dark.png')
+                                        : Image.asset(
+                                            'assets/images/target-light.png'),
+                                    onTap: () => changePage(0)),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 1),
+                                  child: Text(
+                                    'Atividades',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat-Regular',
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -173,16 +160,43 @@ class BasePageState extends State<BasePage> {
                             const VerticalDivider(),
                             Column(
                               children: [
-                                IconButton(
-                                  onPressed: () => changePage(2),
-                                  icon: const Icon(Icons.person),
+                                InkWell(
+                                    child: themeMode == ThemeMode.light
+                                        ? Image.asset(
+                                            'assets/images/github-dark.png')
+                                        : Image.asset(
+                                            'assets/images/github-light.png'),
+                                    onTap: () => changePage(1)),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 7),
+                                  child: Text(
+                                    'Repositórios',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat-Regular',
+                                      fontSize: 12,
+                                    ),
+                                  ),
                                 ),
-                                const Text(
-                                  'Sobre o dev',
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat-Regular',
-                                    fontSize: 12,
-                                    height: 0.1,
+                              ],
+                            ),
+                            const VerticalDivider(),
+                            Column(
+                              children: [
+                                InkWell(
+                                    child: themeMode == ThemeMode.light
+                                        ? Image.asset(
+                                            'assets/images/person-dark.png')
+                                        : Image.asset(
+                                            'assets/images/person-light.png'),
+                                    onTap: () => changePage(2)),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 7),
+                                  child: Text(
+                                    'Sobre o dev',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat-Regular',
+                                      fontSize: 12,
+                                    ),
                                   ),
                                 ),
                               ],

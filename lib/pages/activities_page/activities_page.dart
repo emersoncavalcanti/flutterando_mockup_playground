@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../animations_page/animations_page.dart';
 import '../base_page.dart';
 import '../theme_inherited.dart';
 import 'widgets/custom_card.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 class ActivitiesPage extends StatefulWidget {
   const ActivitiesPage({super.key});
@@ -17,12 +15,14 @@ class ActivitiesPageState extends State<ActivitiesPage> {
   @override
   Widget build(BuildContext context) {
     context.dependOnInheritedWidgetOfExactType<ThemeInherited>();
-    context.findAncestorStateOfType<BasePageState>()!;
+    final state = context.findAncestorStateOfType<BasePageState>()!;
 
     return ListView(
       children: [
         CustomCard(
-            icon: FontAwesomeIcons.personRunning,
+            image: state.themeMode == ThemeMode.light
+                ? Image.asset('assets/images/running-light.png')
+                : Image.asset('assets/images/running-dark.png'),
             title: 'Animações',
             text:
                 'Estudos sobre animações implicítas e controladas, contendo 4 exercícios e 2 estudos',
@@ -36,7 +36,9 @@ class ActivitiesPageState extends State<ActivitiesPage> {
               );
             }),
         CustomCard(
-          icon: FontAwesomeIcons.glasses,
+          image: state.themeMode == ThemeMode.light
+              ? Image.asset('assets/images/glasses-light.png')
+              : Image.asset('assets/images/glasses-dark.png'),
           title: 'Leitura de Mockup',
           text:
               'Aplicação da técnica de leitura de mockup, contendo 2 exercícios',
@@ -44,7 +46,9 @@ class ActivitiesPageState extends State<ActivitiesPage> {
           function: () {},
         ),
         CustomCard(
-          icon: Symbols.toys_fan,
+          image: state.themeMode == ThemeMode.light
+              ? Image.asset('assets/images/toys-light.png')
+              : Image.asset('assets/images/toys-dark.png'),
           title: 'Playground',
           text: 'Ambiente destinado a testes e estudos em geral',
           numberExercise: '3',

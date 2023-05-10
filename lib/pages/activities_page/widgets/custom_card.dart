@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../src/themes/color_schemes.g.dart';
 import '../../base_page.dart';
 
 class CustomCard extends StatefulWidget {
-  final IconData icon;
+  final Image image;
   final String title;
   final String text;
   final String numberExercise;
@@ -13,7 +12,7 @@ class CustomCard extends StatefulWidget {
 
   const CustomCard({
     super.key,
-    required this.icon,
+    required this.image,
     required this.title,
     required this.text,
     required this.numberExercise,
@@ -52,11 +51,7 @@ class _CustomCardState extends State<CustomCard> {
                     ),
                     width: 43,
                     height: 43,
-                    child: Icon(
-                        color: themeMode == ThemeMode.dark
-                            ? lightColorScheme.onPrimaryContainer
-                            : darkColorScheme.onPrimaryContainer,
-                        widget.icon),
+                    child: widget.image,
                   ),
                 ),
                 Expanded(
@@ -123,7 +118,9 @@ class _CustomCardState extends State<CustomCard> {
                       flex: 2,
                       child: Row(
                         children: [
-                          const Icon(FontAwesomeIcons.github),
+                          state.themeMode == ThemeMode.light
+                              ? Image.asset('assets/images/github-dark.png')
+                              : Image.asset('assets/images/github-light.png'),
                           Text(
                             ' Acessar código fonte',
                             style: TextStyle(
