@@ -60,14 +60,14 @@ class _CustomCardState extends State<CustomCard> {
                     widget.title,
                     style: const TextStyle(
                       fontFamily: 'Poppins-Medium',
-                      fontSize: 16,
+                      fontSize: 13,
                     ),
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Container(
-                    padding: const EdgeInsets.only(right: 11),
+                    padding: const EdgeInsets.only(right: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

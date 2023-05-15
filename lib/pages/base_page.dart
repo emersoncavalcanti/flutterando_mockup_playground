@@ -20,7 +20,7 @@ class BasePageState extends State<BasePage> {
   double currentPosition = 0;
   late String title = 'Atividades';
   late PageController pc;
-  var _themeMode = ThemeMode.light;
+  var _themeMode = ThemeMode.dark;
   ThemeMode get themeMode => _themeMode;
 
   void changeTheme(ThemeMode themeMode) {
@@ -65,6 +65,15 @@ class BasePageState extends State<BasePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final bool isHomePage = currentPage == 0;
+    final bool isRepoPage = currentPage == 1;
+    final bool isAboutPage = currentPage == 2;
+
+    final Alignment alignment = isHomePage
+        ? Alignment.topLeft
+        : isRepoPage
+            ? Alignment.topCenter
+            : Alignment.topRight;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -105,7 +114,8 @@ class BasePageState extends State<BasePage> {
                 bottom: 0,
                 left: 0,
                 child: Container(
-                  padding: const EdgeInsets.only(top: 10, bottom: 25),
+                  padding: const EdgeInsets.only(
+                      top: 20, bottom: 25, left: 10, right: 10),
                   width: size.width,
                   height: 90,
                   color: themeMode == ThemeMode.dark
@@ -113,97 +123,87 @@ class BasePageState extends State<BasePage> {
                       : lightColorScheme.background,
                   child: Stack(
                     children: [
-                      AnimatedPositioned(
+                      AnimatedAlign(
+                        alignment: alignment,
                         duration: const Duration(milliseconds: 500),
-                        left: currentPosition,
-                        curve: Curves.easeIn,
                         child: Container(
-                          margin: const EdgeInsets.only(left: 32, top: 9),
-                          width: 60,
                           height: 30,
+                          width: 70,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: themeMode == ThemeMode.dark
-                                ? darkColorScheme.inverseSurface
-                                : lightColorScheme.inverseSurface,
-                          ),
+                              color: themeMode == ThemeMode.dark
+                                  ? darkColorScheme.inverseSurface
+                                  : lightColorScheme.inverseSurface,
+                              borderRadius: BorderRadius.circular(20)),
                         ),
                       ),
-                      Container(
-                        width: size.width,
-                        height: 80,
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                InkWell(
-                                    child: themeMode == ThemeMode.light
-                                        ? Image.asset(
-                                            'assets/images/target-dark.png')
-                                        : Image.asset(
-                                            'assets/images/target-light.png'),
-                                    onTap: () => changePage(0)),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 1),
-                                  child: Text(
-                                    'Atividades',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat-Regular',
-                                      fontSize: 12,
-                                    ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              InkWell(
+                                  child: themeMode == ThemeMode.light
+                                      ? Image.asset(
+                                          'assets/images/target-dark.png')
+                                      : Image.asset(
+                                          'assets/images/target-light.png'),
+                                  onTap: () => changePage(0)),
+                              const Text(
+                                'Atividades',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat-Regular',
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const VerticalDivider(),
+                          Column(
+                            children: [
+                              InkWell(
+                                  child: themeMode == ThemeMode.light
+                                      ? Image.asset(
+                                          'assets/images/github-dark.png')
+                                      : Image.asset(
+                                          'assets/images/github-light.png'),
+                                  onTap: () => changePage(1)),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 7),
+                                child: Text(
+                                  'Repositórios',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat-Regular',
+                                    fontSize: 12,
                                   ),
                                 ),
-                              ],
-                            ),
-                            const VerticalDivider(),
-                            Column(
-                              children: [
-                                InkWell(
-                                    child: themeMode == ThemeMode.light
-                                        ? Image.asset(
-                                            'assets/images/github-dark.png')
-                                        : Image.asset(
-                                            'assets/images/github-light.png'),
-                                    onTap: () => changePage(1)),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 7),
-                                  child: Text(
-                                    'Repositórios',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat-Regular',
-                                      fontSize: 12,
-                                    ),
+                              ),
+                            ],
+                          ),
+                          const VerticalDivider(),
+                          Column(
+                            children: [
+                              InkWell(
+                                  child: themeMode == ThemeMode.light
+                                      ? Image.asset(
+                                          'assets/images/person-dark.png')
+                                      : Image.asset(
+                                          'assets/images/person-light.png'),
+                                  onTap: () => changePage(2)),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 7),
+                                child: Text(
+                                  'Sobre o dev',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat-Regular',
+                                    fontSize: 12,
                                   ),
                                 ),
-                              ],
-                            ),
-                            const VerticalDivider(),
-                            Column(
-                              children: [
-                                InkWell(
-                                    child: themeMode == ThemeMode.light
-                                        ? Image.asset(
-                                            'assets/images/person-dark.png')
-                                        : Image.asset(
-                                            'assets/images/person-light.png'),
-                                    onTap: () => changePage(2)),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 7),
-                                  child: Text(
-                                    'Sobre o dev',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat-Regular',
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
